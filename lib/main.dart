@@ -22,12 +22,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Checkin app',
       home: MainView(),
-      theme: ThemeData(
-        brightness: Brightness.dark,
-        primaryColor: Colors.lightBlue[800],
-        accentColor: Colors.cyan[600],
-        textTheme: const TextTheme(),
-      ),
     );
   }
 }
