@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "326652695028",
+    "project_id": "check-in-b2ffd",
+    "storage_bucket": "check-in-b2ffd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:326652695028:android:bbbce5cb7233ae3404e9a1",
+        "android_client_info": {
+          "package_name": "com.lcmc.check_in"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "326652695028-1j82ne7i7grnt6qp7ks9onrjqrg1rro4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAyTW_n503KAsy272boEsgIvlWrMKPQtt0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "326652695028-1j82ne7i7grnt6qp7ks9onrjqrg1rro4.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "326652695028-pk9oti8ukdgjobu9dfoshbt06v4gmcbc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.lcmc.checkIn"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
