@@ -1,9 +1,11 @@
-import 'package:check_in/signup_view.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'model/bottom_navigation_model.dart';
+import 'chat/chat_view.dart';
+import 'home/home_view.dart';
+import 'search/search_view.dart';
+import 'setting/setting_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-
-import 'login_view.dart';
+import 'package:provider/provider.dart';
 
 //Run
 void main() async {
@@ -17,57 +19,67 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Checkin app',
       home: MainView(),
+      theme: ThemeData(
+        brightness: Brightness.dark,
+        primaryColor: Colors.lightBlue[800],
+        accentColor: Colors.cyan[600],
+        textTheme: const TextTheme(),
+      ),
     );
   }
 }
 
 //MainView
 class MainView extends StatelessWidget {
-  const MainView({Key? key}) : super(key: key);
+  MainView({Key? key}) : super(key: key);
+
+  //ボトムナビゲーションページリスト
+  final List<Widget> _pageList = <Widget>[
+    const HomeView(),
+    const SearchView(),
+    const ChatView(),
+    const SettingView(),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('HOME'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ElevatedButton(
-              child: const Text('次へ'),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => SignupView(),
-                  ),
-                );
-              },
-            ),
-            TextButton.icon(
-              onPressed: () async {
-                await FirebaseAuth.instance.signOut();
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => LoginView()),
-                );
-              },
-              icon: const Icon(
-                Icons.exit_to_app,
+    return ChangeNotifierProvider<BottomNavigationModel>(
+      create: (_) => BottomNavigationModel(),
+      child: Consumer<BottomNavigationModel>(builder: (context, model, child) {
+        return Scaffold(
+          //ボトムナビゲーション-------------------------------------
+          body: _pageList[model.currentIndex],
+          bottomNavigationBar: BottomNavigationBar(
+            currentIndex: model.currentIndex,
+            type: BottomNavigationBarType.fixed,
+            onTap: (index) {
+              model.currentIndex =
+                  index;
+            },
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                label: 'HOME',
               ),
-              label: const Text(
-                'サインアウト',
-                style: TextStyle(color: Colors.blue),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.search),
+                label: 'Search',
               ),
-            ),
-          ],
-        ),
-      ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.chat),
+                label: 'Chat',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.settings),
+                label: 'Settings',
+              ),
+            ],
+          ),
+        );
+      }),
     );
   }
 }
