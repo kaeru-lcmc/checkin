@@ -1,11 +1,9 @@
+import 'package:provider/provider.dart';
 import 'model/bottom_navigation_model.dart';
-import 'chat/chat_view.dart';
 import 'home/home_view.dart';
-import 'search/search_view.dart';
 import 'setting/setting_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 //Run
 void main() async {
@@ -33,8 +31,6 @@ class MainView extends StatelessWidget {
   //ボトムナビゲーションページリスト
   final List<Widget> _pageList = <Widget>[
     const HomeView(),
-    const SearchView(),
-    const ChatView(),
     const SettingView(),
   ];
 
@@ -57,14 +53,6 @@ class MainView extends StatelessWidget {
               BottomNavigationBarItem(
                 icon: Icon(Icons.home),
                 label: 'HOME',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.search),
-                label: 'Search',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.chat),
-                label: 'Chat',
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.settings),
